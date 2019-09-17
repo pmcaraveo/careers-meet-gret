@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cb75077a67654e48813682da31b6cc1a" Name="Diagram1" ZoomLevel="93">
+        <EntityTypeShape EntityType="CareersModel.AspNetRoles" Width="1.5" PointX="0.75" PointY="4" />
+        <EntityTypeShape EntityType="CareersModel.AspNetUserClaims" Width="1.5" PointX="5.75" PointY="3.625" />
+        <EntityTypeShape EntityType="CareersModel.AspNetUserLogins" Width="1.5" PointX="5.75" PointY="5.875" />
+        <EntityTypeShape EntityType="CareersModel.AspNetUsers" Width="1.5" PointX="3" PointY="3.625" />
+        <EntityTypeShape EntityType="CareersModel.Empresa" Width="1.5" PointX="0.75" PointY="6.625" />
+        <AssociationConnector Association="CareersModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="CareersModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="CareersModel.FK_dbo_AspNetUsers_dbo_Empresa_EmpresaId" />
+        <AssociationConnector Association="CareersModel.AspNetUserRoles" />
+        <EntityTypeShape EntityType="CareersModel.Pais" Width="1.5" PointX="0.75" PointY="10" />
+        <EntityTypeShape EntityType="CareersModel.Area" Width="1.5" PointX="8" PointY="9.5" />
+        <EntityTypeShape EntityType="CareersModel.Ciudad" Width="1.5" PointX="3.75" PointY="13.375" />
+        <EntityTypeShape EntityType="CareersModel.Estado" Width="1.5" PointX="0.75" PointY="13.375" />
+        <AssociationConnector Association="CareersModel.FK_Ciudad_Estado" />
+        <AssociationConnector Association="CareersModel.FK_Estado_Pais" />
+        <EntityTypeShape EntityType="CareersModel.NivelOrganizacional" Width="1.5" PointX="6.25" PointY="8.25" />
+        <EntityTypeShape EntityType="CareersModel.TipoPublicacion" Width="1.5" PointX="6.25" PointY="12.125" />
+        <EntityTypeShape EntityType="CareersModel.Vacante" Width="1.5" PointX="3.75" PointY="8.625" />
+        <AssociationConnector Association="CareersModel.FK_Vacante_Area" />
+        <AssociationConnector Association="CareersModel.FK_Vacante_Ciudad" />
+        <AssociationConnector Association="CareersModel.FK_Vacante_Empresa" />
+        <AssociationConnector Association="CareersModel.FK_Vacante_NivelOrganizacional" />
+        <AssociationConnector Association="CareersModel.FK_Vacante_TipoPublicacion" />
+        <EntityTypeShape EntityType="CareersModel.Canal" Width="1.5" PointX="8.375" PointY="0.75" />
+        <EntityTypeShape EntityType="CareersModel.Colaborador" Width="1.5" PointX="10.25" PointY="9.125" />
+        <AssociationConnector Association="CareersModel.FK_Colaborador_Area" />
+        <AssociationConnector Association="CareersModel.FK_Colaborador_Empresa" />
+        <EntityTypeShape EntityType="CareersModel.Ejecutivos" Width="1.5" PointX="12.875" PointY="4.75" />
+        <AssociationConnector Association="CareersModel.FK_Ejecutivos_Canal" />
+        <AssociationConnector Association="CareersModel.FK_Ejecutivos_Colaborador" />
+        <AssociationConnector Association="CareersModel.FK_Ejecutivos_Empresa" />
+        <AssociationConnector Association="CareersModel.FK_Ejecutivos_NivelOrganizacional" />
+        <EntityTypeShape EntityType="CareersModel.Horarios" Width="1.5" PointX="15.125" PointY="5.5" />
+        <AssociationConnector Association="CareersModel.FK_Horarios_Ejecutivos" />
+        <EntityTypeShape EntityType="CareersModel.Estatus" Width="1.5" PointX="0.75" PointY="0.875" />
+        <EntityTypeShape EntityType="CareersModel.v_perfil_ejecutivos" Width="1.5" PointX="2.75" PointY="0.75" />
+        <AssociationConnector Association="CareersModel.FK_Horarios_Estatus" />
+        <EntityTypeShape EntityType="CareersModel.v_historico" Width="1.5" PointX="8.375" PointY="4.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

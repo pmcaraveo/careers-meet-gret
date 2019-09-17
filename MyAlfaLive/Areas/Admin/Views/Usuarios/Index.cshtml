@@ -1,0 +1,37 @@
+﻿@section styles{
+    @Styles.Render("~/Content/datatablescss")
+}
+
+@{
+    ViewBag.Title = "Usuarios";
+}
+
+<h2>Usuarios</h2>
+
+<p>
+    @Html.ActionLink("Nuevo usuario", "Create")
+</p>
+
+@{
+    var vm = Html.DataTableVm("tblCIDesarrollo", (UsuariosController u) => u.GetPagedUsuarios(null));
+    //vm.StateSave = true;
+
+    // Activar para filtrado por columnas
+    vm.ColVis = true;
+    vm.UseColumnFilterPlugin = true;
+
+    // Ocultar la caja de búsqueda y mostrar n registros
+    vm.Dom = "rtip"; // default: lfrtip
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            @Html.Partial("_MyDataTable", vm)
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/datatablesjs")
+}

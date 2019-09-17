@@ -1,0 +1,11 @@
+﻿@{
+    var attributes = new Dictionary<string, object>();
+    attributes.Add("class", "form-control datetimepicker-input");
+    attributes.Add("data_target", "#" + (ViewData.TemplateInfo.HtmlFieldPrefix) + "DateGroup");
+}
+<div class="input-group datepicker" id="@(ViewData.TemplateInfo.HtmlFieldPrefix)DateGroup" data-target-input="nearest">
+    @Html.TextBox("", ViewData.TemplateInfo.FormattedModelValue, attributes)
+    <div class="input-group-append" data-target="#@(ViewData.TemplateInfo.HtmlFieldPrefix)DateGroup" data-toggle="datetimepicker">
+        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+    </div>
+</div>

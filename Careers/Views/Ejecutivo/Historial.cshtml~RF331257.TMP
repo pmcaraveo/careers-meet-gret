@@ -1,0 +1,77 @@
+﻿
+
+@model Careers.Domain.Ejecutivos
+
+
+@{
+    ViewBag.Title = "Historial - Citas de los Ejecutivos";
+}
+<ul class="nav nav-pills">
+    <li class="nav-item">
+
+    </li>
+</ul>
+<br />
+
+
+
+
+
+<table class="table table-bordered table-sm" style="width: 95%; text-align:left; margin: 0 auto; " id="tbl-perfil-ejecutivos">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Ejecutivo</th>
+            <th scope="col">Empresa</th>
+            <th scope="col">Colaborador</th>
+            <th scope="col">Empresa</th>
+            <th scope="col">Area</th>
+            <th scope="col">Fecha y Hora</th>
+            <th scope="col">Canal</th>
+            <th scope="col">Status</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in ViewBag.Datos)
+        {
+        <tr>
+            <th scope="row">@item.Id</th>
+            <td>@item.Ejecutivo</td>
+            <td>@item.Empresa</td>
+            <td>@item.Colaborador</td>
+            <td>@item.EmpresaColaborador</td>
+            <td>@item.Area</td>
+            <td>@item.Fecha</td>
+            <td>@item.Canal</td>
+            <td>@item.Estatus</td>
+
+        </tr>
+        }
+    </tbody>
+</table>
+
+
+
+
+@*@if (Model != null)
+    {
+        @Html.DisplayFor(model => model.Nombre)
+        //  <div class="hijo">&nbsp;&nbsp;&nbsp;&nbsp;</div>
+
+
+
+    }*@
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="~/Content/datepicker/jquery.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#tbl-perfil-ejecutivos').dataTable();
+        });
+    </script>
+}

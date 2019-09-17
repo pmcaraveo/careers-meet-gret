@@ -1,0 +1,91 @@
+﻿@using MyAlfaLive.Helpers;
+@model MyAlfaLive.Areas.Admin.Models.UsuariosViewModel
+@{
+    ViewBag.Title = "Alta Usuario";
+}
+
+<h2>Alta a usuario</h2>
+
+@using (Html.BeginForm("Create", "Usuarios", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <hr />
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Apellido, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Apellido, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Apellido, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.EmpresaId, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.EmpresaId, Model.Empresas, "< seleccione >", new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.EmpresaId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+       
+        <div form="form-group">
+            @Html.LabelFor(m => m.RolesId, new { @class = "col-md-2 control-label" })
+            <div name="that" id="that"class="col-md-10">
+                <label>Super Administrador</label><br>
+                <input class="chk" type="checkbox" name="RolesId" value="@MyAlfaLive.Domain.Enums.Roles.SuperAdministrador.ToInt()" onclick="check()"checked="checked"> Acceso total<br>
+                <label>Administrador</label><br>
+                <input class="desabilitar" type="checkbox" name="RolesId" value="@MyAlfaLive.Domain.Enums.Roles.AdministradorCareers.ToInt()" onclick="check();"> Alfa Careers &nbsp
+                <input class="desabilitar" type="checkbox" name="RolesId" value="@MyAlfaLive.Domain.Enums.Roles.AdministradorMeetG.ToInt()" onclick="check();"> Meet and greet &nbsp
+                <input class="desabilitar" type="checkbox" name="RolesId" value="@MyAlfaLive.Domain.Enums.Roles.AdministradorAskUs.ToInt()" onclick="check();"> Ask Us Anything<br>
+                <label>Agente</label><br>
+                <input class="desabilitar" type="checkbox" name="RolesId" value="@MyAlfaLive.Domain.Enums.Roles.AgenteCareers.ToInt()" onclick="check();"> Alfa Careers &nbsp
+                <input class="desabilitar" type="checkbox" name="RolesId" value="@MyAlfaLive.Domain.Enums.Roles.AgenteMeetG.ToInt()" onclick="check();"> Meet and greet &nbsp
+                <input class="desabilitar" type="checkbox" name="RolesId" value="@MyAlfaLive.Domain.Enums.Roles.AgenteAskUs.ToInt()" onclick="check();"> Ask Us Anything<br>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Volver al listado", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        function check() {
+            $(function () {
+                $(".chk").change(function () {
+                    var st = this.checked;
+                    if (st) {
+                        $(".desabilitar").prop("disabled", true);
+                    }
+                    else {
+                        $(".desabilitar").prop("disabled", false)
+                    }
+                });
+            });
+        }
+    </script>    
+}

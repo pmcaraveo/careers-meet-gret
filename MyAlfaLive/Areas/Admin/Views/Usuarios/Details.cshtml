@@ -1,0 +1,31 @@
+﻿@model MyAlfaLive.Areas.Admin.Models.UsuarioDetailViewModel
+
+@{
+    ViewBag.Title = "Detalles";
+}
+
+<div>
+    @Html.ActionLink("Volver al listado", "Index")
+</div>
+<h2>Detalles del usuario</h2>
+
+@if (Model != null)
+{
+    <div>
+        @Html.LabelFor(m => m.Usuario, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            <p>@Model.Usuario.Nombre</p>
+        </div>
+        @Html.LabelFor(m => m.Roles, new { @class = "col-md-2 control-label" })        
+        <div class="col-md-10">
+            <dl>
+                @foreach (var item in Model.Roles)
+                {
+                    <p>@item.Name</p>
+                }
+            </dl>
+        </div>
+    </div>
+}
+
+

@@ -1,0 +1,1493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CareersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="UsuarioCreoId" Type="int" />
+          <Property Name="FechaCreacion" Type="datetime" StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioActualizoId" Type="int" />
+          <Property Name="FechaActualizacion" Type="datetime" StoreGeneratedPattern="Computed" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="ClaimType" Type="nvarchar(max)" />
+          <Property Name="ClaimValue" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="ProviderKey" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUserRoles">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Apellido" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmpresaId" Type="int" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="EmailConfirmed" Type="bit" Nullable="false" />
+          <Property Name="PasswordHash" Type="nvarchar(max)" />
+          <Property Name="SecurityStamp" Type="nvarchar(max)" />
+          <Property Name="PhoneNumber" Type="nvarchar(max)" />
+          <Property Name="PhoneNumberConfirmed" Type="bit" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="bit" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="datetime" />
+          <Property Name="LockoutEnabled" Type="bit" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Canal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="UsuarioCreoId" Type="int" />
+          <Property Name="FechaCreacion" Type="datetime" />
+          <Property Name="UsuarioActualizoId" Type="int" />
+          <Property Name="FechaActualizacion" Type="datetime" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ciudad">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="EstadoId" Type="int" Nullable="false" />
+          <Property Name="UsuarioCreoId" Type="int" />
+          <Property Name="FechaCreacion" Type="datetime" StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioActualizoId" Type="int" />
+          <Property Name="FechaActualizacion" Type="datetime" StoreGeneratedPattern="Computed" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Colaborador">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="Telefono" Type="varchar(max)" Nullable="false" />
+          <Property Name="EmpresaId" Type="int" Nullable="false" />
+          <Property Name="AreaId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ejecutivos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="EmpresaId" Type="int" Nullable="false" />
+          <Property Name="NivelOrganizacionalId" Type="int" Nullable="false" />
+          <Property Name="ApoyoId" Type="int" Nullable="false" />
+          <Property Name="CanalId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="UsuarioCreoId" Type="int" />
+          <Property Name="FechaCreacion" Type="datetime" StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioActualizoId" Type="int" />
+          <Property Name="FechaActualizacion" Type="datetime" StoreGeneratedPattern="Computed" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="PaisId" Type="int" Nullable="false" />
+          <Property Name="UsuarioCreoId" Type="int" />
+          <Property Name="FechaCreacion" Type="datetime" StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioActualizoId" Type="int" />
+          <Property Name="FechaActualizacion" Type="datetime" StoreGeneratedPattern="Computed" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Estatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Estatus" Type="nvarchar" MaxLength="4000" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Horarios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EjecutivoId" Type="int" Nullable="false" />
+          <Property Name="Fecha" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="EstatusId" Type="int" />
+        </EntityType>
+        <EntityType Name="NivelOrganizacional">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="UsuarioCreoId" Type="int" />
+          <Property Name="FechaCreacion" Type="datetime" StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioActualizoId" Type="int" />
+          <Property Name="FechaActualizacion" Type="datetime" StoreGeneratedPattern="Computed" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pais">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="UsuarioCreoId" Type="int" />
+          <Property Name="FechaCreacion" Type="datetime" StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioActualizoId" Type="int" />
+          <Property Name="FechaActualizacion" Type="datetime" StoreGeneratedPattern="Computed" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoPublicacion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="UsuarioCreoId" Type="int" />
+          <Property Name="FechaCreacion" Type="datetime" StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioActualizoId" Type="int" />
+          <Property Name="FechaActualizacion" Type="datetime" StoreGeneratedPattern="Computed" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Vacante">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="EmpresaId" Type="int" Nullable="false" />
+          <Property Name="CiudadId" Type="int" Nullable="false" />
+          <Property Name="AreaId" Type="int" Nullable="false" />
+          <Property Name="NivelOrganizacionalId" Type="int" Nullable="false" />
+          <Property Name="TipoPublicacionId" Type="int" Nullable="false" />
+          <Property Name="UrlDestino" Type="nvarchar" MaxLength="2000" Nullable="false" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="FechaInicio" Type="datetime" Nullable="false" />
+          <Property Name="FechaFinalizacion" Type="datetime" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Careers.dbo.v_historico' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="v_historico">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Ejecutivo" />
+            <PropertyRef Name="Empresa" />
+            <PropertyRef Name="Colaborador" />
+            <PropertyRef Name="EmpresaColaborador" />
+            <PropertyRef Name="Area" />
+            <PropertyRef Name="Fecha" />
+            <PropertyRef Name="Canal" />
+            <PropertyRef Name="Estatus" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Ejecutivo" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Empresa" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Colaborador" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="EmpresaColaborador" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Area" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Fecha" Type="nvarchar" MaxLength="4000" Nullable="false" />
+          <Property Name="Canal" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Estatus" Type="nvarchar" MaxLength="4000" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Careers.dbo.v_perfil_ejecutivos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="v_perfil_ejecutivos">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Ejecutivo" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Ejecutivo" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Completado" Type="int" />
+        </EntityType>
+        <Association Name="FK_Ciudad_Estado">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ciudad">
+              <PropertyRef Name="EstadoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Colaborador_Area">
+          <End Role="Area" Type="Self.Area" Multiplicity="1" />
+          <End Role="Colaborador" Type="Self.Colaborador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Colaborador">
+              <PropertyRef Name="AreaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Colaborador_Empresa">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
+          <End Role="Colaborador" Type="Self.Colaborador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Colaborador">
+              <PropertyRef Name="EmpresaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserClaims" Type="Self.AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserLogins" Type="Self.AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+          <End Role="AspNetRoles" Type="Self.AspNetRoles" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetRoles">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUserRoles" Type="Self.AspNetUserRoles" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserRoles">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUsers_dbo_Empresa_EmpresaId">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUsers">
+              <PropertyRef Name="EmpresaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ejecutivos_Canal">
+          <End Role="Canal" Type="Self.Canal" Multiplicity="1" />
+          <End Role="Ejecutivos" Type="Self.Ejecutivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Canal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ejecutivos">
+              <PropertyRef Name="CanalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ejecutivos_Colaborador">
+          <End Role="Colaborador" Type="Self.Colaborador" Multiplicity="1" />
+          <End Role="Ejecutivos" Type="Self.Ejecutivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colaborador">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ejecutivos">
+              <PropertyRef Name="ApoyoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ejecutivos_Empresa">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
+          <End Role="Ejecutivos" Type="Self.Ejecutivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ejecutivos">
+              <PropertyRef Name="EmpresaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ejecutivos_NivelOrganizacional">
+          <End Role="NivelOrganizacional" Type="Self.NivelOrganizacional" Multiplicity="1" />
+          <End Role="Ejecutivos" Type="Self.Ejecutivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NivelOrganizacional">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ejecutivos">
+              <PropertyRef Name="NivelOrganizacionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estado_Pais">
+          <End Role="Pais" Type="Self.Pais" Multiplicity="1" />
+          <End Role="Estado" Type="Self.Estado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pais">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Estado">
+              <PropertyRef Name="PaisId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Horarios_Ejecutivos">
+          <End Role="Ejecutivos" Type="Self.Ejecutivos" Multiplicity="1" />
+          <End Role="Horarios" Type="Self.Horarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ejecutivos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Horarios">
+              <PropertyRef Name="EjecutivoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Horarios_Estatus">
+          <End Role="Estatus" Type="Self.Estatus" Multiplicity="0..1" />
+          <End Role="Horarios" Type="Self.Horarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Horarios">
+              <PropertyRef Name="EstatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacante_Area">
+          <End Role="Area" Type="Self.Area" Multiplicity="1" />
+          <End Role="Vacante" Type="Self.Vacante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vacante">
+              <PropertyRef Name="AreaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacante_Ciudad">
+          <End Role="Ciudad" Type="Self.Ciudad" Multiplicity="1" />
+          <End Role="Vacante" Type="Self.Vacante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ciudad">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vacante">
+              <PropertyRef Name="CiudadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacante_Empresa">
+          <End Role="Empresa" Type="Self.Empresa" Multiplicity="1" />
+          <End Role="Vacante" Type="Self.Vacante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vacante">
+              <PropertyRef Name="EmpresaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacante_NivelOrganizacional">
+          <End Role="NivelOrganizacional" Type="Self.NivelOrganizacional" Multiplicity="1" />
+          <End Role="Vacante" Type="Self.Vacante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NivelOrganizacional">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vacante">
+              <PropertyRef Name="NivelOrganizacionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacante_TipoPublicacion">
+          <End Role="TipoPublicacion" Type="Self.TipoPublicacion" Multiplicity="1" />
+          <End Role="Vacante" Type="Self.Vacante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPublicacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vacante">
+              <PropertyRef Name="TipoPublicacionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="CareersModelStoreContainer">
+          <EntitySet Name="Area" EntityType="Self.Area" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetRoles" EntityType="Self.AspNetRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserClaims" EntityType="Self.AspNetUserClaims" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserLogins" EntityType="Self.AspNetUserLogins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUserRoles" EntityType="Self.AspNetUserRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Canal" EntityType="Self.Canal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ciudad" EntityType="Self.Ciudad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Colaborador" EntityType="Self.Colaborador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ejecutivos" EntityType="Self.Ejecutivos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empresa" EntityType="Self.Empresa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estatus" EntityType="Self.Estatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Horarios" EntityType="Self.Horarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NivelOrganizacional" EntityType="Self.NivelOrganizacional" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pais" EntityType="Self.Pais" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoPublicacion" EntityType="Self.TipoPublicacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vacante" EntityType="Self.Vacante" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="v_historico" EntityType="Self.v_historico" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_historico].[Id] AS [Id], 
+    [v_historico].[Ejecutivo] AS [Ejecutivo], 
+    [v_historico].[Empresa] AS [Empresa], 
+    [v_historico].[Colaborador] AS [Colaborador], 
+    [v_historico].[EmpresaColaborador] AS [EmpresaColaborador], 
+    [v_historico].[Area] AS [Area], 
+    [v_historico].[Fecha] AS [Fecha], 
+    [v_historico].[Canal] AS [Canal], 
+    [v_historico].[Estatus] AS [Estatus]
+    FROM [dbo].[v_historico] AS [v_historico]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_perfil_ejecutivos" EntityType="Self.v_perfil_ejecutivos" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_perfil_ejecutivos].[Id] AS [Id], 
+    [v_perfil_ejecutivos].[Ejecutivo] AS [Ejecutivo], 
+    [v_perfil_ejecutivos].[Completado] AS [Completado]
+    FROM [dbo].[v_perfil_ejecutivos] AS [v_perfil_ejecutivos]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Ciudad_Estado" Association="Self.FK_Ciudad_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Ciudad" EntitySet="Ciudad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Colaborador_Area" Association="Self.FK_Colaborador_Area">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Colaborador" EntitySet="Colaborador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Colaborador_Empresa" Association="Self.FK_Colaborador_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Colaborador" EntitySet="Colaborador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetRoles_RoleId">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId" Association="Self.FK_dbo_AspNetUserRoles_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserRoles" EntitySet="AspNetUserRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUsers_dbo_Empresa_EmpresaId" Association="Self.FK_dbo_AspNetUsers_dbo_Empresa_EmpresaId">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ejecutivos_Canal" Association="Self.FK_Ejecutivos_Canal">
+            <End Role="Canal" EntitySet="Canal" />
+            <End Role="Ejecutivos" EntitySet="Ejecutivos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ejecutivos_Colaborador" Association="Self.FK_Ejecutivos_Colaborador">
+            <End Role="Colaborador" EntitySet="Colaborador" />
+            <End Role="Ejecutivos" EntitySet="Ejecutivos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ejecutivos_Empresa" Association="Self.FK_Ejecutivos_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Ejecutivos" EntitySet="Ejecutivos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ejecutivos_NivelOrganizacional" Association="Self.FK_Ejecutivos_NivelOrganizacional">
+            <End Role="NivelOrganizacional" EntitySet="NivelOrganizacional" />
+            <End Role="Ejecutivos" EntitySet="Ejecutivos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estado_Pais" Association="Self.FK_Estado_Pais">
+            <End Role="Pais" EntitySet="Pais" />
+            <End Role="Estado" EntitySet="Estado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Horarios_Ejecutivos" Association="Self.FK_Horarios_Ejecutivos">
+            <End Role="Ejecutivos" EntitySet="Ejecutivos" />
+            <End Role="Horarios" EntitySet="Horarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Horarios_Estatus" Association="Self.FK_Horarios_Estatus">
+            <End Role="Estatus" EntitySet="Estatus" />
+            <End Role="Horarios" EntitySet="Horarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacante_Area" Association="Self.FK_Vacante_Area">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Vacante" EntitySet="Vacante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacante_Ciudad" Association="Self.FK_Vacante_Ciudad">
+            <End Role="Ciudad" EntitySet="Ciudad" />
+            <End Role="Vacante" EntitySet="Vacante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacante_Empresa" Association="Self.FK_Vacante_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Vacante" EntitySet="Vacante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacante_NivelOrganizacional" Association="Self.FK_Vacante_NivelOrganizacional">
+            <End Role="NivelOrganizacional" EntitySet="NivelOrganizacional" />
+            <End Role="Vacante" EntitySet="Vacante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacante_TipoPublicacion" Association="Self.FK_Vacante_TipoPublicacion">
+            <End Role="TipoPublicacion" EntitySet="TipoPublicacion" />
+            <End Role="Vacante" EntitySet="Vacante" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CareersModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="CareersEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AspNetRoles" EntityType="CareersModel.AspNetRoles" />
+          <EntitySet Name="AspNetUserClaims" EntityType="CareersModel.AspNetUserClaims" />
+          <EntitySet Name="AspNetUserLogins" EntityType="CareersModel.AspNetUserLogins" />
+          <EntitySet Name="AspNetUsers" EntityType="CareersModel.AspNetUsers" />
+          <EntitySet Name="Empresa" EntityType="CareersModel.Empresa" />
+          <AssociationSet Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" Association="CareersModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserClaims" EntitySet="AspNetUserClaims" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" Association="CareersModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+            <End Role="AspNetUserLogins" EntitySet="AspNetUserLogins" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_AspNetUsers_dbo_Empresa_EmpresaId" Association="CareersModel.FK_dbo_AspNetUsers_dbo_Empresa_EmpresaId">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <AssociationSet Name="AspNetUserRoles" Association="CareersModel.AspNetUserRoles">
+            <End Role="AspNetRoles" EntitySet="AspNetRoles" />
+            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
+          </AssociationSet>
+          <EntitySet Name="Pais" EntityType="CareersModel.Pais" />
+          <EntitySet Name="Area" EntityType="CareersModel.Area" />
+          <EntitySet Name="Ciudad" EntityType="CareersModel.Ciudad" />
+          <EntitySet Name="Estado" EntityType="CareersModel.Estado" />
+          <AssociationSet Name="FK_Ciudad_Estado" Association="CareersModel.FK_Ciudad_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Ciudad" EntitySet="Ciudad" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Estado_Pais" Association="CareersModel.FK_Estado_Pais">
+            <End Role="Pais" EntitySet="Pais" />
+            <End Role="Estado" EntitySet="Estado" />
+          </AssociationSet>
+          <EntitySet Name="NivelOrganizacional" EntityType="CareersModel.NivelOrganizacional" />
+          <EntitySet Name="TipoPublicacion" EntityType="CareersModel.TipoPublicacion" />
+          <EntitySet Name="Vacante" EntityType="CareersModel.Vacante" />
+          <AssociationSet Name="FK_Vacante_Area" Association="CareersModel.FK_Vacante_Area">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Vacante" EntitySet="Vacante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacante_Ciudad" Association="CareersModel.FK_Vacante_Ciudad">
+            <End Role="Ciudad" EntitySet="Ciudad" />
+            <End Role="Vacante" EntitySet="Vacante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacante_Empresa" Association="CareersModel.FK_Vacante_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Vacante" EntitySet="Vacante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacante_NivelOrganizacional" Association="CareersModel.FK_Vacante_NivelOrganizacional">
+            <End Role="NivelOrganizacional" EntitySet="NivelOrganizacional" />
+            <End Role="Vacante" EntitySet="Vacante" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vacante_TipoPublicacion" Association="CareersModel.FK_Vacante_TipoPublicacion">
+            <End Role="TipoPublicacion" EntitySet="TipoPublicacion" />
+            <End Role="Vacante" EntitySet="Vacante" />
+          </AssociationSet>
+          <EntitySet Name="Canal" EntityType="CareersModel.Canal" />
+          <EntitySet Name="Colaborador" EntityType="CareersModel.Colaborador" />
+          <AssociationSet Name="FK_Colaborador_Area" Association="CareersModel.FK_Colaborador_Area">
+            <End Role="Area" EntitySet="Area" />
+            <End Role="Colaborador" EntitySet="Colaborador" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Colaborador_Empresa" Association="CareersModel.FK_Colaborador_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Colaborador" EntitySet="Colaborador" />
+          </AssociationSet>
+          <EntitySet Name="Ejecutivos" EntityType="CareersModel.Ejecutivos" />
+          <AssociationSet Name="FK_Ejecutivos_Canal" Association="CareersModel.FK_Ejecutivos_Canal">
+            <End Role="Canal" EntitySet="Canal" />
+            <End Role="Ejecutivos" EntitySet="Ejecutivos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ejecutivos_Colaborador" Association="CareersModel.FK_Ejecutivos_Colaborador">
+            <End Role="Colaborador" EntitySet="Colaborador" />
+            <End Role="Ejecutivos" EntitySet="Ejecutivos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ejecutivos_Empresa" Association="CareersModel.FK_Ejecutivos_Empresa">
+            <End Role="Empresa" EntitySet="Empresa" />
+            <End Role="Ejecutivos" EntitySet="Ejecutivos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ejecutivos_NivelOrganizacional" Association="CareersModel.FK_Ejecutivos_NivelOrganizacional">
+            <End Role="NivelOrganizacional" EntitySet="NivelOrganizacional" />
+            <End Role="Ejecutivos" EntitySet="Ejecutivos" />
+          </AssociationSet>
+          <EntitySet Name="Horarios" EntityType="CareersModel.Horarios" />
+          <AssociationSet Name="FK_Horarios_Ejecutivos" Association="CareersModel.FK_Horarios_Ejecutivos">
+            <End Role="Ejecutivos" EntitySet="Ejecutivos" />
+            <End Role="Horarios" EntitySet="Horarios" />
+          </AssociationSet>
+          <EntitySet Name="Estatus" EntityType="CareersModel.Estatus" />
+          <EntitySet Name="v_perfil_ejecutivos" EntityType="CareersModel.v_perfil_ejecutivos" />
+          <AssociationSet Name="FK_Horarios_Estatus" Association="CareersModel.FK_Horarios_Estatus">
+            <End Role="Estatus" EntitySet="Estatus" />
+            <End Role="Horarios" EntitySet="Horarios" />
+          </AssociationSet>
+          <EntitySet Name="v_historico" EntityType="CareersModel.v_historico" />
+          </EntityContainer>
+        <EntityType Name="AspNetRoles">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="CareersModel.AspNetUserRoles" FromRole="AspNetRoles" ToRole="AspNetUsers" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AspNetUserClaims">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="ClaimType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ClaimValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUsers" Relationship="CareersModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUserClaims" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUserLogins">
+          <Key>
+            <PropertyRef Name="LoginProvider" />
+            <PropertyRef Name="ProviderKey" />
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="LoginProvider" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ProviderKey" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="CareersModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUserLogins" ToRole="AspNetUsers" />
+        </EntityType>
+        <EntityType Name="AspNetUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Apellido" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EmpresaId" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmailConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="PasswordHash" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SecurityStamp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumberConfirmed" Type="Boolean" Nullable="false" />
+          <Property Name="TwoFactorEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="LockoutEndDateUtc" Type="DateTime" Precision="3" />
+          <Property Name="LockoutEnabled" Type="Boolean" Nullable="false" />
+          <Property Name="AccessFailedCount" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="AspNetUserClaims" Relationship="CareersModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserClaims" />
+          <NavigationProperty Name="AspNetUserLogins" Relationship="CareersModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" FromRole="AspNetUsers" ToRole="AspNetUserLogins" />
+          <NavigationProperty Name="Empresa" Relationship="CareersModel.FK_dbo_AspNetUsers_dbo_Empresa_EmpresaId" FromRole="AspNetUsers" ToRole="Empresa" />
+          <NavigationProperty Name="AspNetRoles" Relationship="CareersModel.AspNetUserRoles" FromRole="AspNetUsers" ToRole="AspNetRoles" />
+        </EntityType>
+        <EntityType Name="Empresa">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="UsuarioCreoId" Type="Int32" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioActualizoId" Type="Int32" />
+          <Property Name="FechaActualizacion" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AspNetUsers" Relationship="CareersModel.FK_dbo_AspNetUsers_dbo_Empresa_EmpresaId" FromRole="Empresa" ToRole="AspNetUsers" />
+          <NavigationProperty Name="Vacante" Relationship="CareersModel.FK_Vacante_Empresa" FromRole="Empresa" ToRole="Vacante" />
+          <NavigationProperty Name="Colaborador" Relationship="CareersModel.FK_Colaborador_Empresa" FromRole="Empresa" ToRole="Colaborador" />
+          <NavigationProperty Name="Ejecutivos" Relationship="CareersModel.FK_Ejecutivos_Empresa" FromRole="Empresa" ToRole="Ejecutivos" />
+        </EntityType>
+        <Association Name="FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId">
+          <End Type="CareersModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CareersModel.AspNetUserClaims" Role="AspNetUserClaims" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserClaims">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId">
+          <End Type="CareersModel.AspNetUsers" Role="AspNetUsers" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CareersModel.AspNetUserLogins" Role="AspNetUserLogins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AspNetUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUserLogins">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_AspNetUsers_dbo_Empresa_EmpresaId">
+          <End Type="CareersModel.Empresa" Role="Empresa" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="CareersModel.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AspNetUsers">
+              <PropertyRef Name="EmpresaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="AspNetUserRoles">
+          <End Type="CareersModel.AspNetRoles" Role="AspNetRoles" Multiplicity="*" />
+          <End Type="CareersModel.AspNetUsers" Role="AspNetUsers" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Pais">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="UsuarioCreoId" Type="Int32" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioActualizoId" Type="Int32" />
+          <Property Name="FechaActualizacion" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Estado" Relationship="CareersModel.FK_Estado_Pais" FromRole="Pais" ToRole="Estado" />
+        </EntityType>
+        <EntityType Name="Area">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="UsuarioCreoId" Type="Int32" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioActualizoId" Type="Int32" />
+          <Property Name="FechaActualizacion" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Vacante" Relationship="CareersModel.FK_Vacante_Area" FromRole="Area" ToRole="Vacante" />
+          <NavigationProperty Name="Colaborador" Relationship="CareersModel.FK_Colaborador_Area" FromRole="Area" ToRole="Colaborador" />
+        </EntityType>
+        <EntityType Name="Ciudad">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EstadoId" Type="Int32" Nullable="false" />
+          <Property Name="UsuarioCreoId" Type="Int32" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioActualizoId" Type="Int32" />
+          <Property Name="FechaActualizacion" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Estado" Relationship="CareersModel.FK_Ciudad_Estado" FromRole="Ciudad" ToRole="Estado" />
+          <NavigationProperty Name="Vacante" Relationship="CareersModel.FK_Vacante_Ciudad" FromRole="Ciudad" ToRole="Vacante" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="PaisId" Type="Int32" Nullable="false" />
+          <Property Name="UsuarioCreoId" Type="Int32" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioActualizoId" Type="Int32" />
+          <Property Name="FechaActualizacion" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Ciudad" Relationship="CareersModel.FK_Ciudad_Estado" FromRole="Estado" ToRole="Ciudad" />
+          <NavigationProperty Name="Pais" Relationship="CareersModel.FK_Estado_Pais" FromRole="Estado" ToRole="Pais" />
+        </EntityType>
+        <Association Name="FK_Ciudad_Estado">
+          <End Type="CareersModel.Estado" Role="Estado" Multiplicity="1" />
+          <End Type="CareersModel.Ciudad" Role="Ciudad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ciudad">
+              <PropertyRef Name="EstadoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Estado_Pais">
+          <End Type="CareersModel.Pais" Role="Pais" Multiplicity="1" />
+          <End Type="CareersModel.Estado" Role="Estado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pais">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Estado">
+              <PropertyRef Name="PaisId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="NivelOrganizacional">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="UsuarioCreoId" Type="Int32" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioActualizoId" Type="Int32" />
+          <Property Name="FechaActualizacion" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Vacante" Relationship="CareersModel.FK_Vacante_NivelOrganizacional" FromRole="NivelOrganizacional" ToRole="Vacante" />
+          <NavigationProperty Name="Ejecutivos" Relationship="CareersModel.FK_Ejecutivos_NivelOrganizacional" FromRole="NivelOrganizacional" ToRole="Ejecutivos" />
+        </EntityType>
+        <EntityType Name="TipoPublicacion">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="UsuarioCreoId" Type="Int32" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsuarioActualizoId" Type="Int32" />
+          <Property Name="FechaActualizacion" Type="DateTime" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Vacante" Relationship="CareersModel.FK_Vacante_TipoPublicacion" FromRole="TipoPublicacion" ToRole="Vacante" />
+        </EntityType>
+        <EntityType Name="Vacante">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="EmpresaId" Type="Int32" Nullable="false" />
+          <Property Name="CiudadId" Type="Int32" Nullable="false" />
+          <Property Name="AreaId" Type="Int32" Nullable="false" />
+          <Property Name="NivelOrganizacionalId" Type="Int32" Nullable="false" />
+          <Property Name="TipoPublicacionId" Type="Int32" Nullable="false" />
+          <Property Name="UrlDestino" Type="String" Nullable="false" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Area" Relationship="CareersModel.FK_Vacante_Area" FromRole="Vacante" ToRole="Area" />
+          <NavigationProperty Name="Ciudad" Relationship="CareersModel.FK_Vacante_Ciudad" FromRole="Vacante" ToRole="Ciudad" />
+          <NavigationProperty Name="Empresa" Relationship="CareersModel.FK_Vacante_Empresa" FromRole="Vacante" ToRole="Empresa" />
+          <NavigationProperty Name="NivelOrganizacional" Relationship="CareersModel.FK_Vacante_NivelOrganizacional" FromRole="Vacante" ToRole="NivelOrganizacional" />
+          <NavigationProperty Name="TipoPublicacion" Relationship="CareersModel.FK_Vacante_TipoPublicacion" FromRole="Vacante" ToRole="TipoPublicacion" />
+          <Property Name="FechaInicio" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaFinalizacion" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <Association Name="FK_Vacante_Area">
+          <End Type="CareersModel.Area" Role="Area" Multiplicity="1" />
+          <End Type="CareersModel.Vacante" Role="Vacante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vacante">
+              <PropertyRef Name="AreaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacante_Ciudad">
+          <End Type="CareersModel.Ciudad" Role="Ciudad" Multiplicity="1" />
+          <End Type="CareersModel.Vacante" Role="Vacante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ciudad">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vacante">
+              <PropertyRef Name="CiudadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacante_Empresa">
+          <End Type="CareersModel.Empresa" Role="Empresa" Multiplicity="1" />
+          <End Type="CareersModel.Vacante" Role="Vacante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vacante">
+              <PropertyRef Name="EmpresaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacante_NivelOrganizacional">
+          <End Type="CareersModel.NivelOrganizacional" Role="NivelOrganizacional" Multiplicity="1" />
+          <End Type="CareersModel.Vacante" Role="Vacante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NivelOrganizacional">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vacante">
+              <PropertyRef Name="NivelOrganizacionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vacante_TipoPublicacion">
+          <End Type="CareersModel.TipoPublicacion" Role="TipoPublicacion" Multiplicity="1" />
+          <End Type="CareersModel.Vacante" Role="Vacante" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPublicacion">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Vacante">
+              <PropertyRef Name="TipoPublicacionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Canal">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="UsuarioCreoId" Type="Int32" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+          <Property Name="UsuarioActualizoId" Type="Int32" />
+          <Property Name="FechaActualizacion" Type="DateTime" Precision="3" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Ejecutivos" Relationship="CareersModel.FK_Ejecutivos_Canal" FromRole="Canal" ToRole="Ejecutivos" />
+        </EntityType>
+        <EntityType Name="Colaborador">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EmpresaId" Type="Int32" Nullable="false" />
+          <Property Name="AreaId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Area" Relationship="CareersModel.FK_Colaborador_Area" FromRole="Colaborador" ToRole="Area" />
+          <NavigationProperty Name="Empresa" Relationship="CareersModel.FK_Colaborador_Empresa" FromRole="Colaborador" ToRole="Empresa" />
+          <NavigationProperty Name="Ejecutivos" Relationship="CareersModel.FK_Ejecutivos_Colaborador" FromRole="Colaborador" ToRole="Ejecutivos" />
+        </EntityType>
+        <Association Name="FK_Colaborador_Area">
+          <End Type="CareersModel.Area" Role="Area" Multiplicity="1" />
+          <End Type="CareersModel.Colaborador" Role="Colaborador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Area">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Colaborador">
+              <PropertyRef Name="AreaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Colaborador_Empresa">
+          <End Type="CareersModel.Empresa" Role="Empresa" Multiplicity="1" />
+          <End Type="CareersModel.Colaborador" Role="Colaborador" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Colaborador">
+              <PropertyRef Name="EmpresaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Ejecutivos">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="EmpresaId" Type="Int32" Nullable="false" />
+          <Property Name="NivelOrganizacionalId" Type="Int32" Nullable="false" />
+          <Property Name="ApoyoId" Type="Int32" Nullable="false" />
+          <Property Name="CanalId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Canal" Relationship="CareersModel.FK_Ejecutivos_Canal" FromRole="Ejecutivos" ToRole="Canal" />
+          <NavigationProperty Name="Colaborador" Relationship="CareersModel.FK_Ejecutivos_Colaborador" FromRole="Ejecutivos" ToRole="Colaborador" />
+          <NavigationProperty Name="Empresa" Relationship="CareersModel.FK_Ejecutivos_Empresa" FromRole="Ejecutivos" ToRole="Empresa" />
+          <NavigationProperty Name="NivelOrganizacional" Relationship="CareersModel.FK_Ejecutivos_NivelOrganizacional" FromRole="Ejecutivos" ToRole="NivelOrganizacional" />
+          <NavigationProperty Name="Horarios" Relationship="CareersModel.FK_Horarios_Ejecutivos" FromRole="Ejecutivos" ToRole="Horarios" />
+        </EntityType>
+        <Association Name="FK_Ejecutivos_Canal">
+          <End Type="CareersModel.Canal" Role="Canal" Multiplicity="1" />
+          <End Type="CareersModel.Ejecutivos" Role="Ejecutivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Canal">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ejecutivos">
+              <PropertyRef Name="CanalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ejecutivos_Colaborador">
+          <End Type="CareersModel.Colaborador" Role="Colaborador" Multiplicity="1" />
+          <End Type="CareersModel.Ejecutivos" Role="Ejecutivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Colaborador">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ejecutivos">
+              <PropertyRef Name="ApoyoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ejecutivos_Empresa">
+          <End Type="CareersModel.Empresa" Role="Empresa" Multiplicity="1" />
+          <End Type="CareersModel.Ejecutivos" Role="Ejecutivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Empresa">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ejecutivos">
+              <PropertyRef Name="EmpresaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ejecutivos_NivelOrganizacional">
+          <End Type="CareersModel.NivelOrganizacional" Role="NivelOrganizacional" Multiplicity="1" />
+          <End Type="CareersModel.Ejecutivos" Role="Ejecutivos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NivelOrganizacional">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ejecutivos">
+              <PropertyRef Name="NivelOrganizacionalId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Horarios">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EjecutivoId" Type="Int32" Nullable="false" />
+          <Property Name="Fecha" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Ejecutivos" Relationship="CareersModel.FK_Horarios_Ejecutivos" FromRole="Horarios" ToRole="Ejecutivos" />
+          <Property Name="EstatusId" Type="Int32" />
+          <NavigationProperty Name="Estatus" Relationship="CareersModel.FK_Horarios_Estatus" FromRole="Horarios" ToRole="Estatus" />
+        </EntityType>
+        <Association Name="FK_Horarios_Ejecutivos">
+          <End Type="CareersModel.Ejecutivos" Role="Ejecutivos" Multiplicity="1" />
+          <End Type="CareersModel.Horarios" Role="Horarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ejecutivos">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Horarios">
+              <PropertyRef Name="EjecutivoId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Estatus">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Estatus1" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Horarios" Relationship="CareersModel.FK_Horarios_Estatus" FromRole="Estatus" ToRole="Horarios" />
+        </EntityType>
+        <EntityType Name="v_perfil_ejecutivos">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Ejecutivo" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Ejecutivo" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Completado" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_Horarios_Estatus">
+          <End Type="CareersModel.Estatus" Role="Estatus" Multiplicity="0..1" />
+          <End Type="CareersModel.Horarios" Role="Horarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estatus">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Horarios">
+              <PropertyRef Name="EstatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="v_historico">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Ejecutivo" />
+            <PropertyRef Name="Empresa" />
+            <PropertyRef Name="Colaborador" />
+            <PropertyRef Name="EmpresaColaborador" />
+            <PropertyRef Name="Area" />
+            <PropertyRef Name="Fecha" />
+            <PropertyRef Name="Canal" />
+            <PropertyRef Name="Estatus" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Ejecutivo" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Empresa" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Colaborador" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="EmpresaColaborador" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Area" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Fecha" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Canal" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Estatus" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CareersModelStoreContainer" CdmEntityContainer="CareersEntities">
+          <EntitySetMapping Name="AspNetRoles">
+            <EntityTypeMapping TypeName="CareersModel.AspNetRoles">
+              <MappingFragment StoreEntitySet="AspNetRoles">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserClaims">
+            <EntityTypeMapping TypeName="CareersModel.AspNetUserClaims">
+              <MappingFragment StoreEntitySet="AspNetUserClaims">
+                <ScalarProperty Name="ClaimValue" ColumnName="ClaimValue" />
+                <ScalarProperty Name="ClaimType" ColumnName="ClaimType" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUserLogins">
+            <EntityTypeMapping TypeName="CareersModel.AspNetUserLogins">
+              <MappingFragment StoreEntitySet="AspNetUserLogins">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="ProviderKey" ColumnName="ProviderKey" />
+                <ScalarProperty Name="LoginProvider" ColumnName="LoginProvider" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AspNetUsers">
+            <EntityTypeMapping TypeName="CareersModel.AspNetUsers">
+              <MappingFragment StoreEntitySet="AspNetUsers">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="AccessFailedCount" ColumnName="AccessFailedCount" />
+                <ScalarProperty Name="LockoutEnabled" ColumnName="LockoutEnabled" />
+                <ScalarProperty Name="LockoutEndDateUtc" ColumnName="LockoutEndDateUtc" />
+                <ScalarProperty Name="TwoFactorEnabled" ColumnName="TwoFactorEnabled" />
+                <ScalarProperty Name="PhoneNumberConfirmed" ColumnName="PhoneNumberConfirmed" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="SecurityStamp" ColumnName="SecurityStamp" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="EmailConfirmed" ColumnName="EmailConfirmed" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmpresaId" ColumnName="EmpresaId" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empresa">
+            <EntityTypeMapping TypeName="CareersModel.Empresa">
+              <MappingFragment StoreEntitySet="Empresa">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="UsuarioActualizoId" ColumnName="UsuarioActualizoId" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioCreoId" ColumnName="UsuarioCreoId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="AspNetUserRoles" TypeName="CareersModel.AspNetUserRoles" StoreEntitySet="AspNetUserRoles">
+            <EndProperty Name="AspNetUsers">
+              <ScalarProperty Name="Id" ColumnName="UserId" />
+            </EndProperty>
+            <EndProperty Name="AspNetRoles">
+              <ScalarProperty Name="Id" ColumnName="RoleId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Pais">
+            <EntityTypeMapping TypeName="CareersModel.Pais">
+              <MappingFragment StoreEntitySet="Pais">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="UsuarioActualizoId" ColumnName="UsuarioActualizoId" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioCreoId" ColumnName="UsuarioCreoId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Area">
+            <EntityTypeMapping TypeName="CareersModel.Area">
+              <MappingFragment StoreEntitySet="Area">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="UsuarioActualizoId" ColumnName="UsuarioActualizoId" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioCreoId" ColumnName="UsuarioCreoId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ciudad">
+            <EntityTypeMapping TypeName="CareersModel.Ciudad">
+              <MappingFragment StoreEntitySet="Ciudad">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="UsuarioActualizoId" ColumnName="UsuarioActualizoId" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioCreoId" ColumnName="UsuarioCreoId" />
+                <ScalarProperty Name="EstadoId" ColumnName="EstadoId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estado">
+            <EntityTypeMapping TypeName="CareersModel.Estado">
+              <MappingFragment StoreEntitySet="Estado">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="UsuarioActualizoId" ColumnName="UsuarioActualizoId" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioCreoId" ColumnName="UsuarioCreoId" />
+                <ScalarProperty Name="PaisId" ColumnName="PaisId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NivelOrganizacional">
+            <EntityTypeMapping TypeName="CareersModel.NivelOrganizacional">
+              <MappingFragment StoreEntitySet="NivelOrganizacional">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="UsuarioActualizoId" ColumnName="UsuarioActualizoId" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioCreoId" ColumnName="UsuarioCreoId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoPublicacion">
+            <EntityTypeMapping TypeName="CareersModel.TipoPublicacion">
+              <MappingFragment StoreEntitySet="TipoPublicacion">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="UsuarioActualizoId" ColumnName="UsuarioActualizoId" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioCreoId" ColumnName="UsuarioCreoId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vacante">
+            <EntityTypeMapping TypeName="CareersModel.Vacante">
+              <MappingFragment StoreEntitySet="Vacante">
+                <ScalarProperty Name="FechaFinalizacion" ColumnName="FechaFinalizacion" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="UrlDestino" ColumnName="UrlDestino" />
+                <ScalarProperty Name="TipoPublicacionId" ColumnName="TipoPublicacionId" />
+                <ScalarProperty Name="NivelOrganizacionalId" ColumnName="NivelOrganizacionalId" />
+                <ScalarProperty Name="AreaId" ColumnName="AreaId" />
+                <ScalarProperty Name="CiudadId" ColumnName="CiudadId" />
+                <ScalarProperty Name="EmpresaId" ColumnName="EmpresaId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Canal">
+            <EntityTypeMapping TypeName="CareersModel.Canal">
+              <MappingFragment StoreEntitySet="Canal">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="FechaActualizacion" ColumnName="FechaActualizacion" />
+                <ScalarProperty Name="UsuarioActualizoId" ColumnName="UsuarioActualizoId" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="UsuarioCreoId" ColumnName="UsuarioCreoId" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Colaborador">
+            <EntityTypeMapping TypeName="CareersModel.Colaborador">
+              <MappingFragment StoreEntitySet="Colaborador">
+                <ScalarProperty Name="AreaId" ColumnName="AreaId" />
+                <ScalarProperty Name="EmpresaId" ColumnName="EmpresaId" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ejecutivos">
+            <EntityTypeMapping TypeName="CareersModel.Ejecutivos">
+              <MappingFragment StoreEntitySet="Ejecutivos">
+                <ScalarProperty Name="CanalId" ColumnName="CanalId" />
+                <ScalarProperty Name="ApoyoId" ColumnName="ApoyoId" />
+                <ScalarProperty Name="NivelOrganizacionalId" ColumnName="NivelOrganizacionalId" />
+                <ScalarProperty Name="EmpresaId" ColumnName="EmpresaId" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Horarios">
+            <EntityTypeMapping TypeName="CareersModel.Horarios">
+              <MappingFragment StoreEntitySet="Horarios">
+                <ScalarProperty Name="EstatusId" ColumnName="EstatusId" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="EjecutivoId" ColumnName="EjecutivoId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estatus">
+            <EntityTypeMapping TypeName="CareersModel.Estatus">
+              <MappingFragment StoreEntitySet="Estatus">
+                <ScalarProperty Name="Estatus1" ColumnName="Estatus" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_perfil_ejecutivos">
+            <EntityTypeMapping TypeName="CareersModel.v_perfil_ejecutivos">
+              <MappingFragment StoreEntitySet="v_perfil_ejecutivos">
+                <ScalarProperty Name="Completado" ColumnName="Completado" />
+                <ScalarProperty Name="Ejecutivo" ColumnName="Ejecutivo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_historico">
+            <EntityTypeMapping TypeName="CareersModel.v_historico">
+              <MappingFragment StoreEntitySet="v_historico">
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="Canal" ColumnName="Canal" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Area" ColumnName="Area" />
+                <ScalarProperty Name="EmpresaColaborador" ColumnName="EmpresaColaborador" />
+                <ScalarProperty Name="Colaborador" ColumnName="Colaborador" />
+                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+                <ScalarProperty Name="Ejecutivo" ColumnName="Ejecutivo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

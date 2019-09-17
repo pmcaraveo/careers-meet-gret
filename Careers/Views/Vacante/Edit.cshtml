@@ -1,0 +1,153 @@
+﻿@model Careers.Models.VacanteViewModel
+@{
+    ViewBag.Title = "Editar";
+}
+
+<ul class="nav nav-pills">
+    <li class="nav-item">
+        @Html.Bs4NavLinkReturnToIndex()
+    </li>
+</ul>
+<br>
+
+<h2>@ViewBag.Title</h2>
+
+@if (Model != null)
+{
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Vacante</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(m => m.Id)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.EmpresaId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.EmpresaId, Model.Empresas, "< Seleccione >", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.EmpresaId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PaisId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.PaisId, Model.Paises, "< Seleccione >", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.PaisId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.EstadoId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.EstadoId, new SelectList(""), "< Seleccione >", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.EstadoId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CiudadId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.CiudadId, new SelectList(""), "< Seleccione >", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CiudadId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.AreaId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.AreaId, Model.Areas, "< Seleccione >", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.AreaId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.NivelOrganizacionalId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.NivelOrganizacionalId, Model.NivelOrganizacional, "< Seleccione >", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.NivelOrganizacionalId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TipoPublicacionId, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(m => m.TipoPublicacionId, Model.TipoPublicacion, "< Seleccione >", htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.TipoPublicacionId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.UrlDestino, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.UrlDestino, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.UrlDestino, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Descripcion, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Guardar" class="btn btn-primary" />
+                </div>
+            </div>
+        </div>
+    }
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(function () {
+            var url = '@Url.Action("GetEstadoByPaisId", "Vacante")';
+            var urlCiudad = '@Url.Action("GetCiudadByEstadoId", "Vacante")';
+
+            $("#PaisId").on("change", function () {
+                $("#EstadoId").empty();
+                $("#EstadoId").append("<option value ='" + "'>" + "< Seleccione >" + "</option>");
+                limpiarCiudad();
+                var paisId = $(this).val();
+
+                $.get(url, { id: paisId }, function (data) {
+                    $.each(data, function (index, row) {
+                        $("#EstadoId").append("<option value ='" + row.Id + "'>" + row.Text + "</option>");
+                    });
+                });
+            });
+
+            $("#EstadoId").on("change", function () {
+                limpiarCiudad();
+                var estadoId = $(this).val();
+                $.get(urlCiudad, { id: estadoId }, function (data) {
+                    $.each(data, function (index, row) {
+                        $("#CiudadId").append("<option value ='" + row.Id + "'>" + row.Text + "</option>");
+                    });
+                });
+            });
+
+        });
+
+        function limpiarCiudad() {
+            $("#CiudadId").empty();
+            $("#CiudadId").append("<option value ='" + "'>" + "< Seleccione >" + "</option>");
+        }
+    </script>
+}

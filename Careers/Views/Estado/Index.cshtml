@@ -1,0 +1,40 @@
+﻿@using Careers.Controllers;
+@using Mvc.JQuery.DataTables;
+@section styles{
+    @Styles.Render("~/Content/datatablescss")
+}
+
+@model IEnumerable<Careers.Domain.Estado>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Crear nueva estado", "Create")
+</p>
+@{
+    var vm = Html.DataTableVm("tblCIDesarrollo", (EstadoController u) => u.GetPagedEstado(null));
+    //vm.StateSave = true;
+
+    // Activar para filtrado por columnas
+    vm.ColVis = true;
+    vm.UseColumnFilterPlugin = true;
+
+    // Ocultar la caja de búsqueda y mostrar n registros
+    vm.Dom = "rtip"; // default: lfrtip
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            @Html.Partial("_MyDataTable", vm)
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/datatablesjs")
+}

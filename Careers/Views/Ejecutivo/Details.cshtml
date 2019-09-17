@@ -1,0 +1,163 @@
+﻿@model Careers.Domain.Ejecutivos
+
+@{
+    ViewBag.Title = "Detalles";
+}
+<ul class="nav nav-pills">
+    <li class="nav-item">
+        @Html.Bs4NavLinkReturnToIndex()
+    </li>
+</ul>
+<br />
+
+<h2>@ViewBag.Title</h2>
+<br />
+<br />
+@if (Model != null)
+{
+
+
+<form class="needs-validation" novalidate>
+    <div class="form-row" style="margin-left: 5%;">
+        <h4>Datos del Ejecutivo</h4>
+
+    </div>
+    <hr>
+    <div class="form-row" style="margin-left: 5%;">
+        <div class="col-md-3 mb-3">
+            @*<img class="align-self-center mr-3" src="~/Content/Img/perfil.png" alt="Generic placeholder image">*@
+            foto
+        </div>
+        <div class="col-md-4 mb-1">
+            <label for="validationCustom01">Nombre</label>
+            <input type="text" class="form-control" id="validationCustom01" placeholder="" value="@Html.DisplayFor(model => model.Nombre)" disabled>
+        </div>
+        <div class="col-md-4 mb-1">
+            <label for="validationCustom02">Puesto</label>
+            <select class="form-control" disabled>
+                <option>@Html.DisplayFor(model => model.NivelOrganizacional.Nombre)</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="form-row" style="margin-left: 5%;">
+        <div class="col-md-3 mb-3">
+            @*<img class="align-self-center mr-3" src="~/Content/Img/perfil.png" alt="Generic placeholder image">*@
+            foto
+        </div>
+        <div class="col-md-8 mb-1">
+            <label for="des">Descripcion</label>
+            <textarea class="form-control z-depth-1" id="des" rows="3" placeholder="@Html.DisplayFor(model => model.Descripcion)" disabled style="font-weight: 300; padding-left: 0.8rem;"></textarea>
+        </div>
+
+    </div>
+    <br />
+    <br />
+    <hr>
+    <div class="form-row" style="margin-left: 5%;">
+        <h4>Datos de la Persona de Apoyo</h4>
+
+    </div>
+    <br />
+
+    <div class="form-row" style="margin-left: 5%;">
+        <div class="col-md-3 mb-1">
+            <label for="validationCustom02">Puesto</label>
+            <select class="form-control" disabled>
+                <option>@Html.DisplayFor(model => model.Colaborador.Nombre)</option>
+            </select>
+        </div>
+        <div class="col-md-4 mb-1">
+            <label for="validationCustom01">Nombre</label>
+            <input type="text" class="form-control" id="validationCustom01" placeholder="" value="@Html.DisplayFor(model => model.Colaborador.Email)" disabled>
+        </div>
+        <div class="col-md-4 mb-1">
+            <label for="validationCustom01">Nombre</label>
+            <input type="text" class="form-control" id="validationCustom01" placeholder="" value="@Html.DisplayFor(model => model.Colaborador.Telefono)" disabled>
+        </div>
+    </div>
+    <br />
+    <br />
+    <hr>
+    <div class="form-row" style="margin-left: 5%;">
+        <h4>Disponibilidad del Ejecutivo</h4>
+
+    </div>
+    <br />
+
+    <div class="form-row" style="margin-left: 5%;">
+        <div class="col-md-3 mb-1">
+            <label for="validationCustom02">Puesto</label>
+            <select class="form-control" disabled>
+                <option>@Html.DisplayFor(model => model.Colaborador.Nombre)</option>
+            </select>
+        </div>
+        <div class="col-md-4 mb-1">
+            <label for="validationCustom01">Nombre</label>
+            <input type="text" class="form-control" id="validationCustom01" placeholder="" value="@Html.DisplayFor(model => model.Colaborador.Email)" disabled>
+        </div>
+        <div class="col-md-4 mb-1">
+            <label for="validationCustom01">Nombre</label>
+            <input type="text" class="form-control" id="validationCustom01" placeholder="" value="@Html.DisplayFor(model => model.Colaborador.Telefono)" disabled>
+        </div>
+    </div>
+
+
+</form>
+
+
+        
+                        
+
+              
+             
+
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            @Html.ActionLink("Editar", "Edit", new { id = Model.Id })
+        </li>
+    </ul>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="~/Content/datepicker/jquery.js"></script>
+    <script src="~/Content/datepicker/jquery.datetimepicker.full.js"></script>
+    <link href="~/Content/datepicker/jquery.datetimepicker.css" rel="stylesheet" />
+
+    <script>
+       //cargar inputs dinamicamente
+       $(document).ready(function () {
+           var campos_max = 5;
+           var x = 0;
+           $('#add_field').click(function (e) {
+               e.preventDefault();
+               if (x < campos_max) {
+                   $('#listas').prepend('<input type="text" id="date" class="form-control col-2" name="date"/> <p> </p>').contents().find("#Fecha").datetimepicker();
+                   $("#date").datetimepicker();
+                   x++;
+                }
+           });
+       });
+
+
+        //carga de los combos anidados
+        $("#ApoyoId").on("change", function () {
+            var data = "ApoyoId=" + $('#ApoyoId').val();
+            $.ajax({
+                 type: "POST",
+                 url: '@Url.Action("getApoyo")',
+                 data: data,
+                success: function (datos) {
+                    $.each(datos, function (datosApoyo, a) {
+                        var email = a.Email;
+                        var tele = a.Telefono;
+                        $('#Email').val(email);
+                        $('#Tel').val(tele);
+                    });         // fin each
+                }//fin success
+            });//fin ajax
+        });// fin funcion
+
+    </script>
+}

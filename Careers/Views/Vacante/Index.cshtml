@@ -1,0 +1,111 @@
+﻿@using Careers.Controllers;
+@using Mvc.JQuery.DataTables;
+@section styles{
+    @Styles.Render("~/Content/datatablescss")
+}
+
+@model IEnumerable<Careers.Domain.Vacante>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="col-md-10">Vacantes activas</h2>
+
+<!-- Button trigger modal -->            
+<div class="col-md-10">
+    <button type="button" class="btn btn-primary" id="btn-open-modal"><i class="fas fa-plus"></i> Publicar una vacante</button>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="exampleModalLabel">Crear nueva vacante.</h2>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="modal-content">
+            </div>
+        </div>
+    </div>
+</div>
+
+@{
+    var vm = Html.DataTableVm("tblCIDesarrollo", (VacanteController u) => u.GetPagedVacante(null));
+    //vm.StateSave = true;
+
+    // Activar para filtrado por columnas
+    vm.ColVis = true;
+    vm.UseColumnFilterPlugin = true;
+
+    // Ocultar la caja de búsqueda y mostrar n registros
+    vm.Dom = "rtip"; // default: lfrtip
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="table-responsive">
+            @Html.Partial("_MyDataTable", vm)
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    @Scripts.Render("~/bundles/datatablesjs")
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        var urls = '@Url.Action("GetEstadoByPaisId", "Vacante")';
+        var urlCiudad = '@Url.Action("GetCiudadByEstadoId", "Vacante")';
+
+        $(function () {
+            var url = '@Url.Action("Create", "Vacante")';
+
+            $("#btn-open-modal").on("click", function () {
+                $.ajax({
+                    url: url,
+                    method: "GET"
+                }).done(function(data) {
+                    $("#modal-content").html(data);
+                    $('#exampleModal').modal("show");
+                    InicializarSelects();
+                    createDateTimePickerControls();
+                });
+            });
+        });
+
+        function InicializarSelects() {
+            $("#PaisId").on("change", function () {
+                $("#EstadoId").empty();
+                $("#EstadoId").append("<option value ='" + "'>" + "< Seleccione >" + "</option>");
+                limpiarCiudad();
+                var paisId = $(this).val();
+
+                $.get(urls, { id: paisId }, function (data) {
+                    $.each(data, function (index, row) {
+                        $("#EstadoId").append("<option value ='" + row.Id + "'>" + row.Text + "</option>");
+                    });
+                });
+            });
+
+            $("#EstadoId").on("change", function () {
+                limpiarCiudad();
+                var estadoId = $(this).val();
+                $.get(urlCiudad, { id: estadoId }, function (data) {
+                    $.each(data, function (index, row) {
+                        $("#CiudadId").append("<option value ='" + row.Id + "'>" + row.Text + "</option>");
+                    });
+                });
+            });
+
+            $.validator.unobtrusive.parse($("#frmCreateVacante"))
+        }
+
+        function limpiarCiudad() {
+            $("#CiudadId").empty();
+            $("#CiudadId").append("<option value ='" + "'>" + "< Seleccione >" + "</option>");
+        }
+    </script>
+}

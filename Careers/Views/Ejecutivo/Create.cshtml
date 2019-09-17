@@ -1,0 +1,153 @@
+﻿@model Careers.Models.EjecutivoViewModel
+@{
+    ViewBag.Title = "Nuevo Ejecutivo";
+}
+<br />
+
+<h2>Alta de Nuevo Ejecutivo</h2>
+<hr />
+<br />
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container">
+        <div class="panel panel-default" style=" width: ">
+            <div class="panel-body">
+                <div class="media">
+                    @Html.ValidationSummary(true, "", new { @class = "" })
+                    <img class="align-self-center mr-3" src="~/Content/Img/perfil.png" alt="Generic placeholder image">
+                    <div class="media-body">
+                        <h5 class="mt-0">
+                            Nombre Completo:
+                            @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control form-control-sm col-md-10", placeholder="Ejem. Benjamin Cruz Diaz" } })
+                            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "" })
+                            <br />
+            
+                            Puesto:
+                            @Html.DropDownListFor(m => m.NivelOrganizacionalId, Model.NivelOrganizacional, "Seleccionar...", htmlAttributes: new { @class = "form-control-sm col-md-10" })
+                            @Html.ValidationMessageFor(model => model.NivelOrganizacionalId, "", new { @class = "text-danger" })
+                      
+                        </h5>
+                        <br />
+                        <h5 class="mt-0">
+                            Empresa:
+                            @Html.DropDownListFor(m => m.EmpresaId, Model.Empresa, "Seleccionar...", htmlAttributes: new { @class = "form-control-sm col-md-10" })
+                            @Html.ValidationMessageFor(model => model.EmpresaId, "", new { @class = "" })
+                            <br />
+                            <br />
+                            Canal a usar:
+                            @Html.DropDownListFor(m => m.CanalId, Model.Canal, "Seleccionar...", htmlAttributes: new { @class = "form-control-sm col-md-10" })
+                            @Html.ValidationMessageFor(model => model.CanalId, "", new { @class = "" })
+                            <br>
+                        </h5>
+                        <br />
+                        <h5 class="mt-0">
+                            Descripción:
+                            @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control form-control-sm col-md-10" } })
+                            @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "" })
+                            <br>
+                        </h5>              
+                    </div>
+                    <hr />
+                </div>
+                <input type="file" value="+" />
+                <br />
+                <hr />
+                <br />
+                <div class="media">
+                    <div class="media-body">
+                        <h5 class="mt-0">Persona de Apoyo</h5><br />
+                        <h5 class="mt-0">
+                            <form>
+                              <div class="form-row">
+                                  <div class="col-6">
+                                      Nombre:
+                                      @Html.DropDownListFor(m => m.ApoyoId, Model.Apoyo, "Seleccionar...", htmlAttributes: new { @class = "form-control" })
+                                      @Html.ValidationMessageFor(model => model.ApoyoId, "", new { @class = "" })
+                                  </div>
+                                  <div class="col">
+                                      Email:
+                                      <input type="text" class="form-control" placeholder="E_mail" id="Email" disabled />
+                                  </div>
+                                  <div class="col">
+                                      Telefono:
+                                      <input type="number" class="form-control" placeholder="Telefono" id="Tel" disabled />
+                                  </div>
+                              </div>
+                            </form>
+                        </h5>
+                        <br />
+                    </div>
+                </div>
+                <br />
+                <hr />
+                <br />
+                <div class="media">
+                    <div class="media-body">
+                        <h5 class="mt-0">Disponibilidad De Horarios</h5><br />
+                        <input type="button" id="add_field" value="Agregar Horario" class="btn btn-warning">
+                        <br><br />
+                            <div id="listas">
+                            </div>
+                        <hr />
+                            <h5>
+                                <p></p>
+                                  <input type="submit" value="Crear" class="btn btn-primary" />
+                                <p></p>
+                            </h5>
+                        <br />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Volver al listado", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script src="~/Content/datepicker/jquery.js"></script>
+    <script src="~/Content/datepicker/jquery.datetimepicker.full.js"></script>
+    <link href="~/Content/datepicker/jquery.datetimepicker.css" rel="stylesheet" />
+
+   <script>
+       //cargar inputs dinamicamente
+       $(document).ready(function () {
+           var campos_max = 5;
+           var x = 0;
+           $('#add_field').click(function (e) {
+               e.preventDefault();
+               if (x < campos_max) {
+                   $('#listas').prepend('<input type="text" id="date" class="form-control col-2" name="date"/> <p> </p>').contents().find("#Fecha").datetimepicker();
+                   $("#date").datetimepicker();
+                   x++;
+                }
+           });
+       });
+
+   
+        //carga de los combos anidados
+        $("#ApoyoId").on("change", function () {
+            var data = "ApoyoId=" + $('#ApoyoId').val();
+            $.ajax({
+                 type: "POST",
+                 url: '@Url.Action("getApoyo")',
+                 data: data,
+                success: function (datos) {
+                    $.each(datos, function (datosApoyo, a) {
+                        var email = a.Email;
+                        var tele = a.Telefono;
+                        $('#Email').val(email);
+                        $('#Tel').val(tele);
+                    });         // fin each
+                }//fin success
+            });//fin ajax
+        });// fin funcion
+
+    </script>
+}

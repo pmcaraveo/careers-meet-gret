@@ -1,0 +1,98 @@
+﻿@model Careers.Domain.Vacante
+
+@{
+    ViewBag.Title = "Eliminar";
+}
+
+<ul class="nav nav-pills">
+    <li class="nav-item">
+        @Html.Bs4NavLinkReturnToIndex()
+    </li>
+</ul>
+<br />
+
+<h2>@ViewBag.Title</h2>
+
+@if (Model != null)
+{
+    <h3>¿Desea eliminar el registro?</h3>
+    <div>
+        <h4>Vacante</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.UrlDestino)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.UrlDestino)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Descripcion)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Area.Nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Area.Nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Ciudad.Nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Ciudad.Nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Empresa.Nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Empresa.Nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.NivelOrganizacional.Nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.NivelOrganizacional.Nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.TipoPublicacion.Nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.TipoPublicacion.Nombre)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                @Html.Bs4SubmitButtonSave()
+            </div>
+        }
+    </div>
+}

@@ -1,0 +1,70 @@
+﻿@model Careers.Domain.Estado
+
+@{
+    ViewBag.Title = "Detalles";
+}
+<ul class="nav nav-pills">
+    <li class="nav-item">
+        @Html.Bs4NavLinkReturnToIndex()
+    </li>
+</ul>
+<br />
+
+<h2>@ViewBag.Title</h2>
+
+@if (Model != null)
+{
+    <div>
+        <h4>Empresa</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.PaisId)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.PaisId)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.UsuarioCreoId)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.UsuarioCreoId)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaCreacion)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FechaCreacion)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.UsuarioActualizoId)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.UsuarioActualizoId)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaActualizacion)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FechaActualizacion)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Activo)
+            </dt>
+            <dt>
+                @Html.DisplayFor(model => model.Activo)
+            </dt>
+        </dl>
+    </div>
+    <ul class="nav nav-pills">
+        <li class="nav-item">
+            @Html.ActionLink("Editar", "Edit", new { id = Model.Id })
+        </li>
+    </ul>
+}

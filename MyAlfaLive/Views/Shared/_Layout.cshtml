@@ -1,0 +1,130 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title My Alfa Live</title>
+    @Styles.Render("~/Content/css")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/css/all.min.css" integrity="sha256-BtbhCIbtfeVWGsqxk1vOHEYXS6qcvQvLMZqjtpWUEx8=" crossorigin="anonymous" />
+    <link href="//netdna.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap-glyphicons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/css/tempusdominus-bootstrap-4.min.css" />
+
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("styles", false)
+</head>
+<body>
+    <div class="navbar navbar-expand-lg navbar-dark text-white" style="background: linear-gradient(40deg,#45cafc,#303f9f)!important">
+        <div class="container">
+            @Html.ActionLink("My Alfa Live", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="@Url.Action("Index", "Home", new { Area = ""})"><i class="fas fa-home"></i> Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Usuarios", "Index", "Usuarios", new { @area = "Admin" }, new { @class = "fas fa-users" })
+                    </li>
+
+                    @*<li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="fas fa-tasks"></i> Catálogos
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="@Url.Action("Index", "Vacante")"><i class="fas fa-users"></i>&nbsp; Vacante</a>
+                <a class="dropdown-item" href="@Url.Action("Index", "Empresa")"><i class="fas fa-industry"></i>&nbsp; Empresa</a>
+                <a class="dropdown-item" href="@Url.Action("Index", "Pais")"><i class="fas fa-globe"></i>&nbsp; Pais</a>
+                <a class="dropdown-item" href="@Url.Action("Index", "Estado")"><i class="fas fa-building"></i>&nbsp; Estado</a>
+                <a class="dropdown-item" href="@Url.Action("Index", "Ciudad")"><i class="fas fa-city"></i>&nbsp; Ciudad</a>
+                <a class="dropdown-item" href="@Url.Action("Index", "Area")"><i class="fas fa-map"></i>&nbsp; Área</a>
+                <a class="dropdown-item" href="@Url.Action("Index", "NivelOrganizacional")"><i class="fas fa-sitemap"></i>&nbsp; Nivel Organizacional</a>
+                <a class="dropdown-item" href="@Url.Action("Index", "TipoPublicacion")"><i class="fas fa-file-alt"></i>&nbsp; Tipo de Publicación</a>
+            </div>
+        </li>*@
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content mt-3">
+        @{ Html.RenderPartial("_Alerts"); }
+        @RenderBody()
+        <hr />
+        <footer>
+            <h4>Alfa</h4>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/locale/es.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.1/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    @RenderSection("scripts", required: false)
+    <script>
+        $(function () {
+            createDateTimePickerControls();
+        })
+        function createDateTimePickerControls() {
+            // Si existe la función datetimepicker
+            if ($.fn.datetimepicker) {
+
+                $.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Constructor.Default, {
+                    icons: {
+                        time: 'fas fa-clock',
+                        date: 'fas fa-calendar',
+                        up: 'fas fa-arrow-up',
+                        down: 'fas fa-arrow-down',
+                        previous: 'fas fa-chevron-left',
+                        next: 'fas fa-chevron-right',
+                        today: 'fas fa-calendar-check-o',
+                        clear: 'fas fa-trash',
+                        close: 'fas fa-times'
+                    }
+                });
+
+                // Activar controles de fecha y hora
+                $('.datetimepicker').datetimepicker({
+                    format: "DD/MM/YYYY HH:mm",
+                    locale: 'es'
+                });
+
+                // Activar controles de fecha
+                $('.datepicker').datetimepicker({
+                    format: "DD/MM/YYYY",
+                    locale: 'es'
+                });
+
+                // Eliminar la validación del browser
+                try {
+                    $.validator.addMethod('date',
+                        function (value, element) {
+                            if (this.optional(element)) {
+                                return true;
+                            }
+                            var ok = true;
+
+                            if (element.attributes.format) {
+                                var format = element.attributes.format.value;
+                                try {
+                                    ok = moment(value, format, true).isValid();
+                                } catch (err) {
+                                    ok = false;
+                                }
+                            }
+                            return ok;
+                        });
+                } catch (e) { }
+            }
+        }
+    </script>
+
+</body>
+</html> 
+
