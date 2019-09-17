@@ -36,3 +36,16 @@ C:\xampp\htdocs\AlfaCareers\Careers.Domain\obj\Debug\Careers.Domain.csproj.CoreC
 C:\xampp\htdocs\AlfaCareers\Careers.Domain\obj\Debug\Careers.Domain.csproj.CopyComplete
 C:\xampp\htdocs\AlfaCareers\Careers.Domain\obj\Debug\Careers.Domain.dll
 C:\xampp\htdocs\AlfaCareers\Careers.Domain\obj\Debug\Careers.Domain.pdb
+C:\Users\Ing Pablo M. Caraveo\Documents\GitHub\careers-meet-gret\Careers.Domain\bin\Debug\Careers.Domain.dll.config
+C:\Users\Ing Pablo M. Caraveo\Documents\GitHub\careers-meet-gret\Careers.Domain\bin\Debug\Careers.Domain.dll
+C:\Users\Ing Pablo M. Caraveo\Documents\GitHub\careers-meet-gret\Careers.Domain\bin\Debug\Careers.Domain.pdb
+C:\Users\Ing Pablo M. Caraveo\Documents\GitHub\careers-meet-gret\Careers.Domain\bin\Debug\EntityFramework.dll
+C:\Users\Ing Pablo M. Caraveo\Documents\GitHub\careers-meet-gret\Careers.Domain\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Ing Pablo M. Caraveo\Documents\GitHub\careers-meet-gret\Careers.Domain\bin\Debug\MVC5.Helpers.dll
+C:\Users\Ing Pablo M. Caraveo\Documents\GitHub\careers-meet-gret\Careers.Domain\bin\Debug\EntityFramework.xml
+C:\Users\Ing Pablo M. Caraveo\Documents\GitHub\careers-meet-gret\Careers.Domain\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Ing Pablo M. Caraveo\Documents\GitHub\careers-meet-gret\Careers.Domain\obj\Debug\Careers.Domain.csprojAssemblyReference.cache
+C:\Users\Ing Pablo M. Caraveo\Documents\GitHub\careers-meet-gret\Careers.Domain\obj\Debug\Careers.Domain.csproj.CoreCompileInputs.cache
+C:\Users\Ing Pablo M. Caraveo\Documents\GitHub\careers-meet-gret\Careers.Domain\obj\Debug\Careers.Domain.csproj.CopyComplete
+C:\Users\Ing Pablo M. Caraveo\Documents\GitHub\careers-meet-gret\Careers.Domain\obj\Debug\Careers.Domain.dll
+C:\Users\Ing Pablo M. Caraveo\Documents\GitHub\careers-meet-gret\Careers.Domain\obj\Debug\Careers.Domain.pdb
