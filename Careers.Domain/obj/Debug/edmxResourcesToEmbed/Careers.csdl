@@ -96,6 +96,7 @@
       <End Role="Horarios" EntitySet="Horarios" />
     </AssociationSet>
     <EntitySet Name="v_historico" EntityType="CareersModel.v_historico" />
+    <EntitySet Name="v_home_perfil" EntityType="CareersModel.v_home_perfil" />
   </EntityContainer>
   <EntityType Name="AspNetRoles">
     <Key>
@@ -591,5 +592,17 @@
     <Property Name="Fecha" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
     <Property Name="Canal" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
     <Property Name="Estatus" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="v_home_perfil">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Nombre" />
+      <PropertyRef Name="Empresa" />
+      <PropertyRef Name="Puesto" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Nombre" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Empresa" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+    <Property Name="Puesto" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
   </EntityType>
 </Schema>

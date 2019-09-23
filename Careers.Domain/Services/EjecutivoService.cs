@@ -108,6 +108,10 @@ namespace Careers.Domain
             return _db.v_historico.OrderBy(a => a.Ejecutivo);
         }
 
+        public IQueryable<v_home_perfil> ListaHomePerfil()
+        {
+            return _db.v_home_perfil;
+        }
 
 
         public OperationResult<Ejecutivos> GetById(int id)

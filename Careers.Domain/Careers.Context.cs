@@ -44,5 +44,6 @@ namespace Careers.Domain
         public virtual DbSet<Estatus> Estatus { get; set; }
         public virtual DbSet<v_perfil_ejecutivos> v_perfil_ejecutivos { get; set; }
         public virtual DbSet<v_historico> v_historico { get; set; }
+        public virtual DbSet<v_home_perfil> v_home_perfil { get; set; }
     }
 }

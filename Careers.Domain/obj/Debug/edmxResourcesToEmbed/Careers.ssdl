@@ -233,6 +233,20 @@ advertencia 6002: La tabla o vista 'Careers.dbo.v_historico' no tiene definida n
     <Property Name="Estatus" Type="nvarchar" MaxLength="4000" Nullable="false" />
   </EntityType>
   <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Careers.dbo.v_home_perfil' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+  <EntityType Name="v_home_perfil">
+    <Key>
+      <PropertyRef Name="Id" />
+      <PropertyRef Name="Nombre" />
+      <PropertyRef Name="Empresa" />
+      <PropertyRef Name="Puesto" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="Empresa" Type="nvarchar" MaxLength="256" Nullable="false" />
+    <Property Name="Puesto" Type="nvarchar" MaxLength="256" Nullable="false" />
+  </EntityType>
+  <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'Careers.dbo.v_perfil_ejecutivos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
   <EntityType Name="v_perfil_ejecutivos">
     <Key>
@@ -524,6 +538,14 @@ advertencia 6002: La tabla o vista 'Careers.dbo.v_perfil_ejecutivos' no tiene de
     [v_historico].[Canal] AS [Canal], 
     [v_historico].[Estatus] AS [Estatus]
     FROM [dbo].[v_historico] AS [v_historico]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="v_home_perfil" EntityType="Self.v_home_perfil" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [v_home_perfil].[Id] AS [Id], 
+    [v_home_perfil].[Nombre] AS [Nombre], 
+    [v_home_perfil].[Empresa] AS [Empresa], 
+    [v_home_perfil].[Puesto] AS [Puesto]
+    FROM [dbo].[v_home_perfil] AS [v_home_perfil]</DefiningQuery>
     </EntitySet>
     <EntitySet Name="v_perfil_ejecutivos" EntityType="Self.v_perfil_ejecutivos" store:Type="Views" store:Schema="dbo">
       <DefiningQuery>SELECT 

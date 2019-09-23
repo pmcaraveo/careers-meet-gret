@@ -35,11 +35,32 @@ namespace Careers.Controllers
             return View();
         }
 
+        public ActionResult Home()
+        {
+            // ViewBag.Dato = _service.ListaDatos();
+            ViewBag.Dato = _service.ListaHomePerfil();
+            return View();
+        }
+
         // GET: Estado/Create
         public ActionResult Create()
         {
             return View(carga());
         }
+
+
+        public ActionResult Confirmacion(int id)
+        {
+            OperationResult<Ejecutivos> getEjecutivo = _service.GetById(id);
+            if (!getEjecutivo.Succeeded)
+            {
+                MessageDanger(getEjecutivo.Message);
+                return View();
+            }
+
+            return View(getEjecutivo.Entity);
+        }
+
 
         public ActionResult getApoyo(int ApoyoId)
         {
@@ -61,11 +82,7 @@ namespace Careers.Controllers
 
             if (ModelState.IsValid)
             {
-                //var UsuarioCreo = new Ejecutivos()
-                //{
-                //    UsuarioCreoId = User.Identity.GetUserId<int>()
-                //};
-
+          
                 var ejecutivo = model.ToEjecutivo();
                 var create = _service.Create(ejecutivo);
                 if (create.Succeeded)
@@ -109,6 +126,8 @@ namespace Careers.Controllers
             model = carga(model);
             return View(model);
         }
+
+
 
         //// POST: Estado/Edit/5
         //[HttpPost]

@@ -137,6 +137,9 @@
     <Compile Include="v_historico.cs">
       <DependentUpon>Careers.tt</DependentUpon>
     </Compile>
+    <Compile Include="v_home_perfil.cs">
+      <DependentUpon>Careers.tt</DependentUpon>
+    </Compile>
     <Compile Include="v_perfil_ejecutivos.cs">
       <DependentUpon>Careers.tt</DependentUpon>
     </Compile>

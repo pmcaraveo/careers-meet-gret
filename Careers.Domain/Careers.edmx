@@ -238,6 +238,20 @@ advertencia 6002: La tabla o vista 'Careers.dbo.v_historico' no tiene definida n
           <Property Name="Estatus" Type="nvarchar" MaxLength="4000" Nullable="false" />
         </EntityType>
         <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'Careers.dbo.v_home_perfil' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="v_home_perfil">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="Empresa" />
+            <PropertyRef Name="Puesto" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Empresa" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Puesto" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <!--Errores durante la generación:
 advertencia 6002: La tabla o vista 'Careers.dbo.v_perfil_ejecutivos' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="v_perfil_ejecutivos">
           <Key>
@@ -530,6 +544,14 @@ advertencia 6002: La tabla o vista 'Careers.dbo.v_perfil_ejecutivos' no tiene de
     [v_historico].[Estatus] AS [Estatus]
     FROM [dbo].[v_historico] AS [v_historico]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="v_home_perfil" EntityType="Self.v_home_perfil" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [v_home_perfil].[Id] AS [Id], 
+    [v_home_perfil].[Nombre] AS [Nombre], 
+    [v_home_perfil].[Empresa] AS [Empresa], 
+    [v_home_perfil].[Puesto] AS [Puesto]
+    FROM [dbo].[v_home_perfil] AS [v_home_perfil]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="v_perfil_ejecutivos" EntityType="Self.v_perfil_ejecutivos" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
     [v_perfil_ejecutivos].[Id] AS [Id], 
@@ -718,6 +740,7 @@ advertencia 6002: La tabla o vista 'Careers.dbo.v_perfil_ejecutivos' no tiene de
             <End Role="Horarios" EntitySet="Horarios" />
           </AssociationSet>
           <EntitySet Name="v_historico" EntityType="CareersModel.v_historico" />
+          <EntitySet Name="v_home_perfil" EntityType="CareersModel.v_home_perfil" />
           </EntityContainer>
         <EntityType Name="AspNetRoles">
           <Key>
@@ -1214,6 +1237,18 @@ advertencia 6002: La tabla o vista 'Careers.dbo.v_perfil_ejecutivos' no tiene de
           <Property Name="Canal" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="Estatus" Type="String" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="v_home_perfil">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Nombre" />
+            <PropertyRef Name="Empresa" />
+            <PropertyRef Name="Puesto" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Empresa" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Puesto" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1463,6 +1498,16 @@ advertencia 6002: La tabla o vista 'Careers.dbo.v_perfil_ejecutivos' no tiene de
                 <ScalarProperty Name="Colaborador" ColumnName="Colaborador" />
                 <ScalarProperty Name="Empresa" ColumnName="Empresa" />
                 <ScalarProperty Name="Ejecutivo" ColumnName="Ejecutivo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_home_perfil">
+            <EntityTypeMapping TypeName="CareersModel.v_home_perfil">
+              <MappingFragment StoreEntitySet="v_home_perfil">
+                <ScalarProperty Name="Puesto" ColumnName="Puesto" />
+                <ScalarProperty Name="Empresa" ColumnName="Empresa" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

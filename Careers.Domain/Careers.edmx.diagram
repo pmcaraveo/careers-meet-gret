@@ -43,6 +43,7 @@
         <EntityTypeShape EntityType="CareersModel.v_perfil_ejecutivos" Width="1.5" PointX="2.75" PointY="0.75" />
         <AssociationConnector Association="CareersModel.FK_Horarios_Estatus" />
         <EntityTypeShape EntityType="CareersModel.v_historico" Width="1.5" PointX="8.375" PointY="4.75" />
+        <EntityTypeShape EntityType="CareersModel.v_home_perfil" Width="1.5" PointX="5.375" PointY="0.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

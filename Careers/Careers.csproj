@@ -788,6 +788,8 @@
     <Content Include="Views\Col\Create.cshtml" />
     <Content Include="Views\Col\Edit.cshtml" />
     <Content Include="Views\Ejecutivo\Historial.cshtml" />
+    <Content Include="Views\Ejecutivo\home.cshtml" />
+    <Content Include="Views\Ejecutivo\Confirmacion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

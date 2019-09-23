@@ -1,0 +1,51 @@
+﻿
+@model Careers.Domain.Ejecutivos
+
+
+@{
+    ViewBag.Title = "Lista de Ejecutivos";
+}
+
+<br />
+<div>
+    <hr />
+    <h3 style="text-align:left; margin: 0 auto;">Meet and Greet</h3>
+    <br />
+    <h5>Crece tu carrera platicando con los mejores ejecutivos. Lorem ipsum dolor sit <br />amet, consectetur adipicising elit...</h5>
+    <hr />
+</div>
+
+<br />
+                <div class="row" style="width: 90%; text-align:center; margin: 0 auto; " >
+                    @foreach (var item in ViewBag.Dato)
+                    {
+                        <div class="card" style="width: 15rem; text-align:left; margin: 0 auto; ">
+                            <img class="card-img-top" src="~/Content/Img/perfil.png" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">@item.Nombre</h5>
+                                <p class="card-text">@item.Puesto, @item.Empresa</p>
+                                <a href="#" class="card-link">@Html.ActionLink("Confirmacion", "Confirmacion", new { id = @item.Id })</a>
+                            </div>
+                        </div>
+                    }  
+                </div>
+<br />
+
+
+    @*<th scope="row">@item.Id</th>*@
+    @section Scripts {
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css" rel="stylesheet" />
+        <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+        <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css" rel="stylesheet" />
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#tbl-perfil-ejecutivos').dataTable();
+            });
+        </script>
+    }
