@@ -11,6 +11,8 @@
 {
     @Html.AntiForgeryToken()
 
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(m => m.Id)
     <div class="container">
         <div class="panel panel-default" style=" width: ">
             <div class="panel-body">
@@ -20,14 +22,14 @@
                     <div class="media-body">
                         <h5 class="mt-0">
                             Nombre Completo:
-                            @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control form-control-sm col-md-10", placeholder="Ejem. Benjamin Cruz Diaz" } })
+                            @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control form-control-sm col-md-10", placeholder = "Ejem. Benjamin Cruz Diaz" } })
                             @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "" })
                             <br />
-            
+
                             Puesto:
                             @Html.DropDownListFor(m => m.NivelOrganizacionalId, Model.NivelOrganizacional, "Seleccionar...", htmlAttributes: new { @class = "form-control-sm col-md-10" })
                             @Html.ValidationMessageFor(model => model.NivelOrganizacionalId, "", new { @class = "text-danger" })
-                      
+
                         </h5>
                         <br />
                         <h5 class="mt-0">
@@ -47,7 +49,7 @@
                             @Html.EditorFor(model => model.Descripcion, new { htmlAttributes = new { @class = "form-control form-control-sm col-md-10" } })
                             @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "" })
                             <br>
-                        </h5>              
+                        </h5>
                     </div>
                     <hr />
                 </div>
@@ -60,21 +62,21 @@
                         <h5 class="mt-0">Persona de Apoyo</h5><br />
                         <h5 class="mt-0">
                             <form>
-                              <div class="form-row">
-                                  <div class="col-6">
-                                      Nombre:
-                                      @Html.DropDownListFor(m => m.ApoyoId, Model.Apoyo, "Seleccionar...", htmlAttributes: new { @class = "form-control" })
-                                      @Html.ValidationMessageFor(model => model.ApoyoId, "", new { @class = "" })
-                                  </div>
-                                  <div class="col">
-                                      Email:
-                                      <input type="text" class="form-control" placeholder="E_mail" id="Email" disabled />
-                                  </div>
-                                  <div class="col">
-                                      Telefono:
-                                      <input type="number" class="form-control" placeholder="Telefono" id="Tel" disabled />
-                                  </div>
-                              </div>
+                                <div class="form-row">
+                                    <div class="col-6">
+                                        Nombre:
+                                        @Html.DropDownListFor(m => m.ApoyoId, Model.Apoyo, "Seleccionar...", htmlAttributes: new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.ApoyoId, "", new { @class = "" })
+                                    </div>
+                                    <div class="col">
+                                        Email:
+                                        <input type="text" class="form-control" placeholder="E_mail" id="Email" disabled />
+                                    </div>
+                                    <div class="col">
+                                        Telefono:
+                                        <input type="number" class="form-control" placeholder="Telefono" id="Tel" disabled />
+                                    </div>
+                                </div>
                             </form>
                         </h5>
                         <br />
@@ -88,14 +90,14 @@
                         <h5 class="mt-0">Disponibilidad De Horarios</h5><br />
                         <input type="button" id="add_field" value="Agregar Horario" class="btn btn-warning">
                         <br><br />
-                            <div id="listas">
-                            </div>
+                        <div id="listas">
+                        </div>
                         <hr />
-                            <h5>
-                                <p></p>
-                                  <input type="submit" value="Crear" class="btn btn-primary" />
-                                <p></p>
-                            </h5>
+                        <h5>
+                            <p></p>
+                            <input type="submit" value="Crear" class="btn btn-primary" />
+                            <p></p>
+                        </h5>
                         <br />
                     </div>
                 </div>
@@ -115,7 +117,7 @@
     <script src="~/Content/datepicker/jquery.datetimepicker.full.js"></script>
     <link href="~/Content/datepicker/jquery.datetimepicker.css" rel="stylesheet" />
 
-   <script>
+    <script>
        //cargar inputs dinamicamente
        $(document).ready(function () {
            var campos_max = 5;
@@ -130,7 +132,7 @@
            });
        });
 
-   
+
         //carga de los combos anidados
         $("#ApoyoId").on("change", function () {
             var data = "ApoyoId=" + $('#ApoyoId').val();
