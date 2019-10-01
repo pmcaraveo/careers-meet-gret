@@ -7,12 +7,10 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Careers.Domain;
-using Careers.Helpers;
 using Careers.Models;
-using Careers.Models.Display;
-using Microsoft.AspNet.Identity;
 using Mvc.JQuery.DataTables;
 using MVC5.Helpers;
+using Careers.Helpers;
 
 namespace Careers.Controllers
 {
@@ -23,21 +21,25 @@ namespace Careers.Controllers
                
         public ActionResult Index()
         {
-           // ViewBag.Dato = _service.ListaDatos();
             ViewBag.Dato = _service.ListaPerfil();
             return View();
         }
 
         public ActionResult Historial()
         {
-            // ViewBag.Dato = _service.ListaDatos();
             ViewBag.Datos = _service.ListaHistorial();
             return View();
         }
 
+        public ActionResult Dash()
+        {
+            ViewBag.Datos = _service.ListaHistorial();
+            return View();
+        }
+
+
         public ActionResult Home()
         {
-            // ViewBag.Dato = _service.ListaDatos();
             ViewBag.Dato = _service.ListaHomePerfil();
             return View();
         }
@@ -130,35 +132,35 @@ namespace Careers.Controllers
 
 
         //// POST: Estado/Edit/5
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult Edit(EstadoViewModel model)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        var estado = new Estado()
-        //        {
-        //            Id = model.Id,
-        //            Nombre = model.Nombre,
-        //            Activo = model.Activo,
-        //            UsuarioActualizoId = User.Identity.GetUserId<int>()
-        //        };
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(EjecutivoViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                //var eje = new Ejecutivos()
+                //{
+                //    Id = model.Id,
+                //    Nombre = model.Nombre,
+                  
+                //  //  UsuarioActualizoId = User.Identity.GetUserId<int>()
+                //};
 
-        //        //var estado = model.ToEstado();
-        //        var update = _service.Update(estado);
-        //        if (update.Succeeded)
-        //        {
-        //            MessageSuccess(update.Message);
-        //            return RedirectToAction("Index");
-        //        }
-        //        else
-        //        {
-        //            MessageDanger(update.Message);
-        //        }
-        //    }
-        //    model = AddSelectListsToEstadoViewModel(model);
-        //    return View(model);
-        //}
+                var eje = model.ToEjecutivo();
+                var update = _service.Update(eje);
+                if (update.Succeeded)
+                {
+                    MessageSuccess(update.Message);
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    MessageDanger(update.Message);
+                }
+            }
+            model = carga(model);
+            return View(model);
+        }
 
         //// GET: Estado/Delete/5
         //public ActionResult Delete(int id)

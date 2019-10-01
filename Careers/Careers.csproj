@@ -790,6 +790,7 @@
     <Content Include="Views\Ejecutivo\Historial.cshtml" />
     <Content Include="Views\Ejecutivo\home.cshtml" />
     <Content Include="Views\Ejecutivo\Confirmacion.cshtml" />
+    <Content Include="Views\Ejecutivo\Dash.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
